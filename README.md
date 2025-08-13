@@ -128,35 +128,6 @@ The system includes comprehensive test cases covering:
 
 Detailed test cases are documented in `docs/manual-test-cases.md`.
 
-## Future Enhancements
-
-1. Authentication & Authorization
-   - Implement JWT-based authentication
-   - Role-based access control
-   - Session management
-
-2. Advanced Features
-   - Book reservation system
-   - Automatic email notifications
-   - Payment gateway integration for late fees
-   - QR code generation for books
-
-3. Performance Optimizations
-   - Request caching
-   - Query optimization
-   - Database indexing
-
-4. Monitoring & Logging
-   - Centralized logging system
-   - Performance metrics collection
-   - Real-time monitoring dashboard
-
-5. Additional Integrations
-   - External book databases
-   - Mobile app development
-   - Barcode scanner integration
-   - Report generation system
-
 ## Project Structure
 ```
 library-backend/
