@@ -1,22 +1,20 @@
-# Library Management System
+# Library Management System - Backend
 
-A full-stack library management system built with SQL Server, .NET, Node.js, and React.
+A Node.js backend for the library management system, built with Express, TypeScript, and SQLite database.
 
 ## Prerequisites
 
-### Database (SQL Server)
-- SQL Server 2019 or later
-- Database name: `library_db`
+### Database
+- SQLite3
 - The database schema includes tables for:
-  - Members (id, name, email, address, created_at)
-  - Books (id, title, isbn, quantity, created_at)
-  - Checkouts (id, member_id, book_id, checkout_date, due_date, return_date, late_fee)
+  - Members (id, name, email, membershipStatus)
+  - Books (id, title, author, isbn, available)
+  - Checkouts (id, bookId, memberId, checkoutDate, dueDate, returnDate)
 
-### Backend (.NET & Node.js)
-- .NET 6.0 or later
+### Backend
 - Node.js 18.x or later
 - NPM 9.x or later
-- TypeScript 5.9.2 or later
+- TypeScript 5.x or later
 
 ### Frontend (React)
 - Node.js 18.x or later
@@ -25,12 +23,7 @@ A full-stack library management system built with SQL Server, .NET, Node.js, and
 ## Setup Instructions
 
 ### 1. Database Setup
-1. Create a new database named `library_db` in SQL Server
-2. Run the schema validation script:
-```sql
--- From database/validate-schema.sql
--- This will validate the required tables and constraints
-```
+The SQLite database will be created automatically when you start the application for the first time. The schema is managed through TypeORM entities.
 
 ### 2. Backend Setup
 1. Install dependencies:
@@ -40,8 +33,9 @@ npm install
 
 2. Create a `.env` file with the following configuration:
 ```env
-DATABASE_URL=your_database_connection_string
 PORT=3000
+DATABASE_TYPE=sqlite
+DATABASE_NAME=library.db
 ```
 
 3. Build the TypeScript code:
@@ -148,9 +142,9 @@ Detailed test cases are documented in `docs/manual-test-cases.md`.
    - QR code generation for books
 
 3. Performance Optimizations
-   - Caching layer implementation
+   - Request caching
    - Query optimization
-   - Connection pooling
+   - Database indexing
 
 4. Monitoring & Logging
    - Centralized logging system
@@ -166,14 +160,22 @@ Detailed test cases are documented in `docs/manual-test-cases.md`.
 ## Project Structure
 ```
 library-backend/
-├── backend/            # Backend application code
-│   └── tests/         # Backend test files
-├── database/          # Database scripts and migrations
-│   └── validate-schema.sql
+├── src/              # Source code
+│   ├── controllers/  # Route controllers
+│   ├── models/       # TypeORM entities
+│   ├── routes/       # Express routes
+│   ├── data-source.ts# Database configuration
+│   └── server.ts     # Main application file
+├── tests/            # Test files
+│   └── api.test.js   # API integration tests
 ├── docs/             # Documentation files
-│   └── manual-test-cases.md
-├── frontend/         # React frontend application
-│   └── src/         # Frontend source code
-├── package.json     # Node.js dependencies and scripts
-└── README.md       # Project documentation
+│   └── manual-test-cases.md  # Manual test scenarios
+├── .env              # Environment variables
+├── .env.example      # Example environment variables
+├── .gitignore        # Git ignore rules
+├── library.sqlite    # SQLite database file
+├── package.json      # Node.js dependencies and scripts
+├── package-lock.json # Locked dependencies versions
+├── tsconfig.json     # TypeScript configuration
+└── README.md        # Project documentation
 ```
